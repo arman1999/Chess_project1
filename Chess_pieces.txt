@@ -1,0 +1,160 @@
+//White Pawn 
+
+LIST legalMoves is a 1D list containing legal move numbers of the piece 
+
+//Pawn Attack 
+
+IF (((candidateCoordinate = -7 or candidateCoordinate = -9) and 
+
+      !(firstColumnExclusion or eighthColumnExclusion)) and  
+
+     spaceOccupiedByEnemy and !kingUnderAttack) 
+
+ADD candidateCoordinate to legalMoves 
+
+//Pawn Jump 
+
+IF(candidateCoordinate = -16 and isFirstMove and 
+
+   !outOfBoard and !spaceOccupied and !kingUnderAttack) 
+
+ADD candidateCoordinate to legalMoves 
+
+//Pawn simple move 
+
+IF(candidateCoordinate = -8 and !spaceOccupied and !kingUnderAttack) 
+
+ADD candidateCoordinate to legalMoves 
+
+BOOL METHOD isValidMove(moveDestinationNumber) 
+
+    IF legalMoves contains moveDestinationNumber 
+
+        return true 
+
+    ELSE: 
+
+        return false 
+        
+//Rook
+LIST legalMoves is a 1D list containing legal move numbers of the piece 
+
+ITERATE through the directions -1, 1, -8, 8 
+
+IF (!outOfBoard and !spaceOccupied and !kingUnderAttack and 
+
+    !(firstColumnExclusion or eighthColumnExclusion) 
+
+    ADD candidateCoordinate to legalMoves 
+
+BOOL METHOD isValidMove(moveDestinationNumber) 
+
+    IF legalMoves contains moveDestinationNumber 
+
+        return true 
+
+    ELSE: 
+
+        return false 
+        
+//Knight
+LIST legalMoves is a 1D list containing legal move numbers of the piece 
+
+ITERATE through the directions –6, 6, -10, 10, -15, 15, -17, 17 
+
+IF (!outOfBoard and !spaceOccupied and !kingUnderAttack and 
+
+!(firstColumnExclusion or secondColumnExclusion 
+
+  or seventhColumnExclusion or eighthColumnExclusion) ) 
+
+    ADD candidateCoordinate to legalMoves 
+
+BOOL METHOD isValidMove(moveDestinationNumber) 
+
+    IF legalMoves contains moveDestinationNumber 
+
+        return true 
+
+    ELSE: 
+
+        return false 
+        
+//Bishop
+LIST legalMoves is a 1D list containing legal move numbers of the piece 
+
+ITERATE through the directions –9, 9, -7, 7 
+
+IF (!outOfBoard and !spaceOccupied and !kingUnderAttack and 
+
+!(firstColumnExclusion or eighthColumnExclusion)) 
+
+    ADD candidateCoordinate to legalMoves 
+
+BOOL METHOD isValidMove(moveDestinationNumber) 
+
+    IF legalMoves contains moveDestinationNumber 
+
+        return true 
+
+    ELSE: 
+
+        return false 
+        
+//Queen
+LIST legalMoves is a 1D list containing legal move numbers of the piece 
+
+ITERATE through the directions -9, -8, -7, -1, 1, 7, 8, 9 
+
+IF (!outOfBoard and !spaceOccupied and !kingUnderAttack and 
+
+!(firstColumnExclusion or eighthColumnExclusion)) 
+
+    ADD candidateCoordinate to legalMoves 
+
+BOOL METHOD isValidMove(moveDestinationNumber) 
+
+    IF legalMoves contains moveDestinationNumber 
+
+        return true 
+
+    ELSE: 
+
+        return false 
+        
+//King
+LIST legalMoves is a 1D list containing legal move numbers of the piece 
+
+ITERATE through the directions -9, -8, -7, -1, 1, 7, 8, 9 
+
+IF (!outOfBoard and !spaceOccupied and !KingUnderAttack and 
+
+!(firstColumnExclusion or eighthColumnExclusion)) 
+
+    ADD candidateCoordinate to legalMoves 
+
+//White King left-side castle 
+
+IF (KING.isFirstMove and ROOK.isFirstMove  and 
+
+     ROOK.currentPosition = 56 and !kingUnderAttack and !spaceOccupied) 
+
+ADD candidateCoordinate = -2 to legalMoves 
+
+//White King right-side castle 
+
+IF (KING.isFirstMove and ROOK.isFirstMove &&  
+
+     ROOK.currentPosition = 63 and !kingUnderAttack and !spaceOccupied) 
+
+ADD candidate coordinate = 2 to legalMoves 
+
+BOOL METHOD isValidMove(moveDestinationNumber) 
+
+    IF legalMoves contains moveDestinationNumber 
+
+        return true 
+
+    ELSE: 
+
+        return false 
